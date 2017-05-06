@@ -1,0 +1,39 @@
+body{
+  background: #3D3D3D !important;
+}
+
+#search-box{
+  position: absolute;
+  top: 15%;
+  left: 15%;
+  width: 70%;
+  border: 5px solid white;
+}
+
+.logo{
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  display: block;
+}
+
+#search-box.move{
+  position: relative;
+  top: 0;
+  right: 0;
+}
+
+
+
+#results, #popular-searches{
+  margin: 0 5px;
+  background: #EFEFEF;
+  border : 5px solid white;
+}
+
+
+
+#sectiontwo{
+  display: none;
+}
+
