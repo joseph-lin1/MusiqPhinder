@@ -35,7 +35,7 @@ $('#my_popup').popup({
 
 function seatGeek(){
   var performers = $(this).data("performers");
-  var queryURL = "https://api.seatgeek.com/2/performers?client_id=NzU0MjI0N3wxNDk0MzgxMTAzLjcy";
+  var queryURL = "https://api.seatgeek.com/2/performers/266?client_id=NzU0MjI0N3wxNDk0MzgxMTAzLjcy";
   $.ajax({
     url: queryURL,
     method: "GET"
