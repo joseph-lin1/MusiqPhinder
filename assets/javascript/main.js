@@ -5,6 +5,8 @@ $("#button").on("click", function(){
   $("#search-box").addClass("move");
   $("#sectiontwo").css("display", "block")
   $(".logo").css({"height":"auto" , "width":"200px"})
+
+  seatGeek();
 })
 
 $.ajax({
@@ -31,3 +33,13 @@ $('#my_popup').popup({
   scrolllock: true
 });
 
+function seatGeek(){
+  var performers = $(this).data("performers");
+  var queryURL = "https://api.seatgeek.com/2/events?client_id=NzU0MjI0N3wxNDk0MzgxMTAzLjcy";
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+  }).done(function(response){
+    console.log(response);
+  })
+}
