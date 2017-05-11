@@ -57,7 +57,8 @@ function seatGeek(){
       if (performer == response.events[i].performers[0].name) {
         $("#table").append('<tr><td>' + response.events[i].performers[0].name+
         '</td><td>' +response.events[i].venue.name +
-        '</td><td>' +response.events[i].stats.lowest_price);
+        '</td><td>' +response.events[i].stats.lowest_price +
+        '</td><td>' +response.events[i].url);
       }
     }
   })
