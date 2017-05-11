@@ -37,11 +37,70 @@ $('#my_popup').popup({
 
 function seatGeek(){
   var performer = $("#search-input").val().trim();
-  var queryURL = "https://api.seatgeek.com/2/performers?q="+performer+"&client_id=NzU0MjI0N3wxNDk0MzgxMTAzLjcy";
+  // var queryURL = "https://api.seatgeek.com/2/performers?q="+performer+"&client_id=NzU0MjI0N3wxNDk0MzgxMTAzLjcy";
+  var queryURL = "https://api.seatgeek.com/2/events?geoip=true&client_id=NzU0MjI0N3wxNDk0MzgxMTAzLjcy"
   $.ajax({
     url: queryURL,
     method: "GET"
   }).done(function(response){
-    console.log(response);
+    console.log(response.events[0].performers[0].name);
+    console.log(response.events[0].venue.name);
+    console.log(response.events[0].venue.address);
+    console.log(response.events[0].venue.city);
+    console.log(response.events[0].venue.state);
+    console.log(response.events[0].stats.lowest_price);
+    console.log(response.events);
+    for (var i = 0; i < response.events.length; i++){
+      $("#table").append('<tr><td>' + response.events[i].performers[0].name+
+        '</td><td>' +response.events[i].venue.name +
+        '</td><td>' +response.events[i].stats.lowest_price);
+    }
   })
 }
+
+// database.ref().on("child_added", function(snapshot){
+// $(".table").append('<tr><td class="tableName2">' + snapshot.val().name +
+//   '</td><td class="tableDestination2">' + snapshot.val().destination +
+//   '</td><td class="tableFrequency2 text-center">' + snapshot.val().frequency +
+//   '</td><td class="tableNextTrain2 text-center">' + snapshot.val().nextArrival +
+//   '</td><td class="tableMinutesTillTrain2 text-center">' + snapshot.val().tMinutesTillTrain);
+// })
+
+
+// $.ajax({
+//       url: queryURL,
+//       method: "GET"
+//     }).done(function(response){
+//       console.log(response); // this works
+//       for (var i = 0; i < response.data.length; i++){
+//         var animalDiv = $("<div>");
+//         var p = $("<p>").text("Rating: " + response.data[i].rating);
+//         var animalGif = $("<img>");
+//         animalGif.addClass("gifImage");
+//         // og source - still
+//         animalGif.attr("src", response.data[i].images.original_still.url);
+//         // still string
+//         animalGif.attr("data-state", "still");
+//         // animated gif
+//         animalGif.attr("data-animate", response.data[i].images.original.url);
+//         // still gif
+//         animalGif.attr("data-still", response.data[i].images.original_still.url);
+
+//         animalDiv.append(animalGif);
+//         animalDiv.append(p);
+//         $(".gifs").append(animalDiv);
+//       }
+
+//       $(".gifImage").on("click", function() {
+//         if ($(this).attr("data-state") === "still") {
+//           $(this).attr("src", $(this).attr("data-animate"));
+//           $(this).attr("data-state", "animate");
+//         }
+//         else {
+//           $(this).attr("src", $(this).attr("data-still"));
+//           $(this).attr("data-state", "still");
+//         }
+//       })
+//     })
+//   })
+// });
