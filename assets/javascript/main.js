@@ -44,16 +44,21 @@ function seatGeek(){
     method: "GET"
   }).done(function(response){
     console.log(response.events[0].performers[0].name);
+
     console.log(response.events[0].venue.name);
     console.log(response.events[0].venue.address);
     console.log(response.events[0].venue.city);
     console.log(response.events[0].venue.state);
     console.log(response.events[0].stats.lowest_price);
     console.log(response.events);
+    var performer = $("#search-input").val().trim();
+
     for (var i = 0; i < response.events.length; i++){
-      $("#table").append('<tr><td>' + response.events[i].performers[0].name+
+      if (performer == response.events[i].performers[0].name) {
+        $("#table").append('<tr><td>' + response.events[i].performers[0].name+
         '</td><td>' +response.events[i].venue.name +
         '</td><td>' +response.events[i].stats.lowest_price);
+      }
     }
   })
 }
