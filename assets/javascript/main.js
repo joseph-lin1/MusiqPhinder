@@ -5,6 +5,8 @@ $("#button").on("click", function(){
   $("#search-box").addClass("move");
   $("#sectiontwo").css("display", "block")
   $(".logo").css({"height":"auto" , "width":"200px"})
+  
+
 
   seatGeek();
 })
@@ -34,12 +36,12 @@ $('#my_popup').popup({
 });
 
 function seatGeek(){
-  var performers = $(this).data("performers");
-  var queryURL = "https://api.seatgeek.com/2/performers/266?client_id=NzU0MjI0N3wxNDk0MzgxMTAzLjcy";
+  var performer = $("#search-input").val().trim();
+  var queryURL = "https://api.seatgeek.com/2/performers?q="+performer+"&client_id=NzU0MjI0N3wxNDk0MzgxMTAzLjcy";
   $.ajax({
     url: queryURL,
     method: "GET"
   }).done(function(response){
-    console.log(response.short_name);
+    console.log(response);
   })
 }
