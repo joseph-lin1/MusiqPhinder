@@ -40,6 +40,6 @@ function seatGeek(){
     url: queryURL,
     method: "GET"
   }).done(function(response){
-    console.log(response);
+    console.log(response.short_name);
   })
 }
