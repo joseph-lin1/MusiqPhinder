@@ -57,7 +57,7 @@ function seatGeek(){
       $("#table").append('<tr><td>' + response.events[i].performers[0].name+
       '</td><td>' +response.events[i].venue.name +
       '</td><td>' +response.events[i].stats.lowest_price +
-      '</td><td>' + response.events[i].url);
+      '</td><td><a href="' +response.events[i].url+ '">SeatGeek</a></td>');
     }
 
     // this one is for performer query
