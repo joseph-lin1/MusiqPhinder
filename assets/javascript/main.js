@@ -3,6 +3,7 @@
 $("#button").on("click", function(){
   event.preventDefault();
   $("#search-box").addClass("move");
+  $("#search-box").css("font-size", "32px");
   $("#sectiontwo").css("display", "block")
   $(".logo").css({"height":"auto" , "width":"200px"})
 })
