@@ -24,7 +24,7 @@
 </div>
 
           <label for="search-input">Search</label>
-          <input type="text" class="form-control" id="search-input" placeholder="Search Name of Concert or Artist">
+          <input type="text" class="form-control" id="search-input" placeholder="Search Name of Concert or Artist" data-artist="performers">
         </div>
         <div class="checkbox">
           <label>
@@ -43,6 +43,14 @@
       <div class="col-lg-9" id="results">
         <h3>Results</h3>
         <hr>
+        <table class="table" id="table">
+          <tr>
+            <th>Concert</th>
+            <th>Venue</th>
+            <th>Price</th>
+            <th>Source</th>
+          </tr>
+        </table>
       </div>
       <div class="col-lg-2" id="popular-searches">
         <h3>Popular Searches</h3>
