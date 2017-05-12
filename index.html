@@ -2,28 +2,38 @@
 <html>
 <head>
 	<title></title>
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="assets/css/style.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="icon" href="musiqphinder.jpg" type="image/x-icon"/>
+  <link href="https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister|Pacifico" rel="stylesheet">
+  <link rel="icon" href="assets/images/musiqphinder.jpg" type="image/x-icon"/>
+
 </head>
 <body>
 
 <div class="container-fluid">
 	<div id="search-box" class="jumbotron">
 		 <form>
+
         <div class="form-group">
 
-          <img class="logo" src="musiqphinder.jpg">
-          <label for="search-input">Music Artists</label>
-          <input type="text" class="form-control" id="search-input" placeholder="Search Name of Concert">
+          <img class="logo" src="assets/images/musiqphinder.jpg" >
+          <div class="row">
+  <div class="col-md-12 col-xs-12 text-center">
+    <div class="col-md-12 col-xs-12 text-center my_popup_open directions" id="directions"><span class="glyphicon glyphicon-info-sign"></span> Click for Directions</div>
+  </div>
+</div>
+
+          <label for="search-input">Search</label>
+          <input type="text" class="form-control" id="search-input" placeholder="Search Name of Concert or Artist" data-artist="performers">
         </div>
         <div class="checkbox">
           <label>
-            <input type="checkbox"> Check me out
+            <input type="checkbox"> Check me out </input>
           </label>
         </div>
         <button id="button" type="submit" class="btn btn-default">Submit</button>
      </form>
+
 	</div>
 </div>
 
@@ -33,6 +43,14 @@
       <div class="col-lg-9" id="results">
         <h3>Results</h3>
         <hr>
+        <table class="table" id="table">
+          <tr>
+            <th>Concert</th>
+            <th>Venue</th>
+            <th>Price</th>
+            <th>Source</th>
+          </tr>
+        </table>
       </div>
       <div class="col-lg-2" id="popular-searches">
         <h3>Popular Searches</h3>
@@ -41,11 +59,35 @@
     </div>   
   </div>
 </div>
+
+
+<!-- Add content to the popup -->
+  <div class="dirpop" id="my_popup">
+
+  <h2 class="dirhead">Directions</h2>
+       <p class="dirbody">Messenger bag sustainable marfa slow-carb, XOXO paleo farm-to-table la croix disrupt humblebrag lomo scenester godard actually meh.   Poke brunch flexitarian occupy migas affogato chartreuse. Raw denim try-hard blue bottle poke, activated charcoal 3 wolf moon crucifix banjo bitters chicharrones vice you probably haven't heard of them.
+    </p>
+    <p class="dirbody">
+    Chartreuse tofu pop-up, viral church-key blog tumblr drinking vinegar you probably haven't heard of them beard.
+    </p>
+    <p class="dirbody">
+     Kale chips pour-over cred, selvage lumbersexual trust fund raclette biodiesel gluten-free brooklyn godard before they sold out.
+    </p>
+    <p class="dirbody">
+    Keytar health goth flexitarian whatever. Fanny pack next level occupy, tilde thundercats echo park flexitarian humblebrag cold-pressed gastropub paleo polaroid glossier.
+    </p>
+
+    <!-- Add an optional button to close the popup -->
+    <button class="my_popup_close">Close</button>
+
+  </div>
 <script
   src="https://code.jquery.com/jquery-3.2.1.js"
   integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
   crossorigin="anonymous"></script>
+  <script src="https://cdn.rawgit.com/vast-engineering/jquery-popup-overlay/1.7.11/jquery.popupoverlay.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="main.js"></script>
+  <script src="assets/javascript/main.js"></script>
+  
 </body>
 </html>
