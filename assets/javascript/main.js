@@ -37,8 +37,9 @@ $('#my_popup').popup({
 
 function seatGeek(){
   var performer = $("#search-input").val().trim();
-  // var queryURL = "https://api.seatgeek.com/2/performers?q="+performer+"&client_id=NzU0MjI0N3wxNDk0MzgxMTAzLjcy";
-  var queryURL = "https://api.seatgeek.com/2/events?geoip=true&range=5mi&client_id=NzU0MjI0N3wxNDk0MzgxMTAzLjcy"
+  var queryURL = "https://api.seatgeek.com/2/performers?q="+performer+"&client_id=NzU0MjI0N3wxNDk0MzgxMTAzLjcy";
+  // var queryURL = "https://api.seatgeek.com/2/events?geoip=true&range=5mi&client_id=NzU0MjI0N3wxNDk0MzgxMTAzLjcy";
+  // var queryURL = "https://api.seatgeek.com/2/events?&geoip=true&range=5mi&client_id=NzU0MjI0N3wxNDk0MzgxMTAzLjcy";
   $.ajax({
     url: queryURL,
     method: "GET"
@@ -49,15 +50,28 @@ function seatGeek(){
     // console.log(response.events[0].venue.city);
     // console.log(response.events[0].venue.state);
     // console.log(response.events[0].stats.lowest_price);
-    console.log(response.events);
+    // console.log(response.events);
+    // console.log(response.events[0].performers.type);
     // var performer = $("#search-input").val().trim();
 
-    for (var i = 0; i < response.events.length; i++){
-      $("#table").append('<tr><td>' + response.events[i].performers[0].name+
-      '</td><td>' +response.events[i].venue.name +
-      '</td><td>' +response.events[i].stats.lowest_price +
-      '</td><td>' +response.events[i].url);
+    // this is for geo ip and mile radius
+    // for (var i = 0; i < response.events.length; i++){
+    //   $("#table").append('<tr><td>' + response.events[i].performers[0].name+
+    //   '</td><td>' +response.events[i].venue.name +
+    //   '</td><td>' +response.events[i].stats.lowest_price +
+    //   '</td><td>' +response.events[i].url);
+    // }
+
+    // this one is for performer query
+    // console.log(response.performers[0].name);
+    console.log(response.performers);
+    for (var i = 0; i < response.performers.length; i++){
+      $("#table").append('<tr><td>' + response.performers[i].name);
+       // '</td><td>' +response.events[i].venue.name +
+       // '</td><td>' +response.events[i].stats.lowest_price +
+       // '</td><td>' +response.events[i].url);
     }
+
   })
 }
 
