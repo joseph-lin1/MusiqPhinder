@@ -36,7 +36,7 @@ $('#my_popup').popup({
 function seatGeek(){
   var performer = $("#search-input").val().trim();
   // var queryURL = "https://api.seatgeek.com/2/performers?q="+performer+"&client_id=NzU0MjI0N3wxNDk0MzgxMTAzLjcy";
-  var queryURL = "https://api.seatgeek.com/2/events?geoip=true&range=5mi&client_id=NzU0MjI0N3wxNDk0MzgxMTAzLjcy";
+  var queryURL = "https://api.seatgeek.com/2/events?geoip=true&range=50mi&client_id=NzU0MjI0N3wxNDk0MzgxMTAzLjcy";
   // var queryURL = "https://api.seatgeek.com/2/events?&geoip=true&range=5mi&client_id=NzU0MjI0N3wxNDk0MzgxMTAzLjcy";
   $.ajax({
     url: queryURL,
@@ -53,11 +53,14 @@ function seatGeek(){
     // var performer = $("#search-input").val().trim();
 
     // this is for geo ip and mile radius
+
     for (var i = 0; i < response.events.length; i++){
-      $("#table").append('<tr><td>' + response.events[i].performers[0].name+
-      '</td><td>' +response.events[i].venue.name +
-      '</td><td>' +response.events[i].stats.lowest_price +
-      '</td><td><a href="' +response.events[i].url+ '">SeatGeek</a></td>');
+      if (response.events[i].performers.type == "band") {
+        $("#table").append('<tr><td>' + response.events[i].performers[0].name+
+        '</td><td>' +response.events[i].venue.name +
+        '</td><td>' +response.events[i].stats.lowest_price +
+        '</td><td><a href="' +response.events[i].url+ '">SeatGeek</a></td>');
+      }
     }
 
     // this one is for performer query
