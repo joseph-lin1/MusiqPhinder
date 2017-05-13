@@ -4,6 +4,7 @@ $("#button").on("click", function(){
   $("#search-box").addClass("move");
   $("#sectiontwo").css("display", "block")
   $(".logo").css({"height":"auto" , "width":"200px"})
+  $("td").remove();
   
   seatGeek();
 })
@@ -13,6 +14,7 @@ $(".radiusButton").on("click", function(){
   $("#search-box").addClass("move");
   $("#sectiontwo").css("display", "block")
   $(".logo").css({"height":"auto" , "width":"200px"})
+  $("td").remove();
 
   seatGeek2();
 })
@@ -29,7 +31,7 @@ function seatGeek(){
   var performer = $("#search-input").val().trim();
   var miles = $("#miles").val().trim();
   parseInt(miles)
-  var queryURL = "https://api.seatgeek.com/2/events?per_page=30&page=10&geoip=true&range="+miles+"mi&client_id=NzU0MjI0N3wxNDk0MzgxMTAzLjcy";
+  var queryURL = "https://api.seatgeek.com/2/events?lowest_price.gt=0&per_page=10&page=3&geoip=true&range="+miles+"mi&client_id=NzU0MjI0N3wxNDk0MzgxMTAzLjcy";
   var bandURL = "https://api.seatgeek.com/2/performers?q="+performer+"&client_id=NzU0MjI0N3wxNDk0MzgxMTAzLjcy";
   $.when(
     $.ajax({
@@ -67,7 +69,7 @@ function seatGeek2(){
   var performer = $("#search-input").val().trim();
   var miles = $("#miles").val().trim();
   parseInt(miles)
-  var queryURL = "https://api.seatgeek.com/2/events?per_page=30&page=10&geoip=true&range="+miles+"mi&client_id=NzU0MjI0N3wxNDk0MzgxMTAzLjcy";
+  var queryURL = "https://api.seatgeek.com/2/events?lowest_price.gt=0&per_page=30&page=10&geoip=true&range="+miles+"mi&client_id=NzU0MjI0N3wxNDk0MzgxMTAzLjcy";
   var bandURL = "https://api.seatgeek.com/2/performers?q="+performer+"&client_id=NzU0MjI0N3wxNDk0MzgxMTAzLjcy";
   $.when(
     $.ajax({
@@ -96,7 +98,7 @@ function seatGeek2(){
     for (var i = 0; i < concert.length; i++){
       $("#table").append('<tr><td>' + concert[i].performers[0].name+
       '</td><td>' +concert[i].venue.name +
-      '</td><td>' +concert[i].stats.lowest_price +
+      '</td><td>' +"$"+concert[i].stats.lowest_price +".00" +
       '</td><td><a href="' +concert[i].url+ '">SeatGeek</a></td>');
     }
   })
