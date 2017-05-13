@@ -63,3 +63,10 @@ body {
   width: 3px;
 }
 /*# sourceMappingURL=style.css.map */
+
+
+@media (max-width: 704px) {
+  .logo {
+    width: 100%;
+  }
+}
