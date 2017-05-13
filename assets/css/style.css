@@ -59,4 +59,7 @@ body {
   font-size: 1.5em;
   line-height: 1; }
 
+.dropdown-menu {
+  width: 3px;
+}
 /*# sourceMappingURL=style.css.map */
