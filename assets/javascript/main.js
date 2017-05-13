@@ -36,7 +36,7 @@ $('#my_popup').popup({
 function seatGeek(){
   var performer = $("#search-input").val().trim();
   // var queryURL = "https://api.seatgeek.com/2/performers?q="+performer+"&client_id=NzU0MjI0N3wxNDk0MzgxMTAzLjcy";
-  var queryURL = "https://api.seatgeek.com/2/events?geoip=true&range=50mi&client_id=NzU0MjI0N3wxNDk0MzgxMTAzLjcy";
+  var queryURL = "https://api.seatgeek.com/2/events?per_page=30&page=10&geoip=true&range=30mi&client_id=NzU0MjI0N3wxNDk0MzgxMTAzLjcy";
   // var queryURL = "https://api.seatgeek.com/2/events?&geoip=true&range=5mi&client_id=NzU0MjI0N3wxNDk0MzgxMTAzLjcy";
   $.ajax({
     url: queryURL,
@@ -50,18 +50,32 @@ function seatGeek(){
     // console.log(response.events[0].stats.lowest_price);
     // console.log(response.events);
     // console.log(response.events[0].performers.type);
-    // var performer = $("#search-input").val().trim();
+    // console.log(response.events[0].type);
 
     // this is for geo ip and mile radius
 
+
+    // javacript method for filtering google js filter
+    // us an array to filter for band
+
+    //creates an array filtering only for concerts
+    var concert = [];
     for (var i = 0; i < response.events.length; i++){
-      if (response.events[i].performers.type == "band") {
-        $("#table").append('<tr><td>' + response.events[i].performers[0].name+
-        '</td><td>' +response.events[i].venue.name +
-        '</td><td>' +response.events[i].stats.lowest_price +
-        '</td><td><a href="' +response.events[i].url+ '">SeatGeek</a></td>');
+      if (response.events[i].type === "concert"){
+        concert.push(response.events[i]);
+        console.log(concert);
       }
     }
+
+    //displays only concerts to html table
+    for (var i = 0; i < concert.length; i++){
+      $("#table").append('<tr><td>' + concert[i].performers[0].name+
+      '</td><td>' +concert[i].venue.name +
+      '</td><td>' +concert[i].stats.lowest_price +
+      '</td><td><a href="' +concert[i].url+ '">SeatGeek</a></td>');
+    }
+
+
 
     // this one is for performer query
     // console.log(response.performers[0].name);
