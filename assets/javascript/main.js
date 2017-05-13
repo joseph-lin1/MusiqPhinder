@@ -1,5 +1,4 @@
-
-
+// clicking submit displays search results and repositions elements
 $("#button").on("click", function(){
   event.preventDefault();
   $("#search-box").addClass("move");
@@ -8,22 +7,6 @@ $("#button").on("click", function(){
   
   seatGeek();
 })
-
-$.ajax({
-  type:"GET",
-  url:"https://app.ticketmaster.com/discovery/v2/events.json?size=1&apikey=Qfv1suz3Z2XxzUENmXjYxN59XsuJPA2j",
-  async:true,
-  dataType: "json",
-  success: function(json) {
-              console.log(json);
-              // Parse the response.
-              // Do other things.
-           },
-  error: function(xhr, status, err) {
-              // This time, we do not end up here!
-           }
-});
-
 
 //pop up 
 $('#my_popup').popup({
@@ -34,36 +17,26 @@ $('#my_popup').popup({
 });
 
 function seatGeek(){
-  var performer = $("#search-input").val().trim();
-  // var queryURL = "https://api.seatgeek.com/2/performers?q="+performer+"&client_id=NzU0MjI0N3wxNDk0MzgxMTAzLjcy";
-  var queryURL = "https://api.seatgeek.com/2/events?per_page=30&page=10&geoip=true&range=30mi&client_id=NzU0MjI0N3wxNDk0MzgxMTAzLjcy";
-  // var queryURL = "https://api.seatgeek.com/2/events?&geoip=true&range=5mi&client_id=NzU0MjI0N3wxNDk0MzgxMTAzLjcy";
-  $.ajax({
-    url: queryURL,
-    method: "GET"
-  }).done(function(response){
-    // console.log(response.events[0].performers[0].name);
-    // console.log(response.events[0].venue.name);
-    // console.log(response.events[0].venue.address);
-    // console.log(response.events[0].venue.city);
-    // console.log(response.events[0].venue.state);
-    // console.log(response.events[0].stats.lowest_price);
-    // console.log(response.events);
-    // console.log(response.events[0].performers.type);
-    // console.log(response.events[0].type);
+  var queryURL = "https://api.seatgeek.com/2/events?per_page=30&page=10&geoip=true&range=10mi&client_id=NzU0MjI0N3wxNDk0MzgxMTAzLjcy";
+  var bandURL = "https://api.seatgeek.com/2/performers?q=red+hot&client_id=NzU0MjI0N3wxNDk0MzgxMTAzLjcy";
+  $.when(
+    $.ajax({
+      url: bandURL,
+      method: "GET"
+    }),
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    })
+  ).done(function(band, response){
+    // console.log(band[0].performers);
+    // console.log(response[0].events);
 
-    // this is for geo ip and mile radius
-
-
-    // javacript method for filtering google js filter
-    // us an array to filter for band
-
-    //creates an array filtering only for concerts
+    // creates an array filtering only for concerts
     var concert = [];
-    for (var i = 0; i < response.events.length; i++){
-      if (response.events[i].type === "concert"){
-        concert.push(response.events[i]);
-        console.log(concert);
+    for (var i = 0; i < response[0].events.length; i++){
+      if (response[0].events[i].type === "concert"){
+        concert.push(response[0].events[i]);
       }
     }
 
@@ -74,21 +47,52 @@ function seatGeek(){
       '</td><td>' +concert[i].stats.lowest_price +
       '</td><td><a href="' +concert[i].url+ '">SeatGeek</a></td>');
     }
-
-
-
-    // this one is for performer query
-    // console.log(response.performers[0].name);
-    // console.log(response.performers);
-    // for (var i = 0; i < response.performers.length; i++){
-    //   $("#table").append('<tr><td>' + response.performers[i].name);
-       // '</td><td>' +response.events[i].venue.name +
-       // '</td><td>' +response.events[i].stats.lowest_price +
-       // '</td><td>' +response.events[i].url);
-    // }
-
   })
 }
+
+
+
+
+
+
+// returns performer
+// function band(){
+//   var performer = $("#search-input").val().trim();
+//   var bandURL = "https://api.seatgeek.com/2/performers?q="+performer+"&client_id=NzU0MjI0N3wxNDk0MzgxMTAzLjcy";
+//   $.ajax({
+//     url: bandURL,
+//     method: "GET"
+//   }).done(function(band){
+//     // console.log(band);
+//   })
+// }
+
+
+
+// function seatGeek(){
+//   var queryURL = "https://api.seatgeek.com/2/events?per_page=30&page=10&geoip=true&range=10mi&client_id=NzU0MjI0N3wxNDk0MzgxMTAzLjcy";
+//   return $.ajax({
+//     url: queryURL,
+//     method: "GET"
+//   }).done(function(response){
+
+//     // creates an array filtering only for concerts
+//     var concert = [];
+//     for (var i = 0; i < response.events.length; i++){
+//       if (response.events[i].type === "concert"){
+//         concert.push(response.events[i]);
+//       }
+//     }
+
+//     //displays only concerts to html table
+//     for (var i = 0; i < concert.length; i++){
+//       $("#table").append('<tr><td>' + concert[i].performers[0].name+
+//       '</td><td>' +concert[i].venue.name +
+//       '</td><td>' +concert[i].stats.lowest_price +
+//       '</td><td><a href="' +concert[i].url+ '">SeatGeek</a></td>');
+//     }
+//   })
+// }
 
 
 
