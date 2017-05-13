@@ -31,7 +31,7 @@ function seatGeek(){
   var performer = $("#search-input").val().trim();
   var miles = $("#miles").val().trim();
   parseInt(miles)
-  var queryURL = "https://api.seatgeek.com/2/events?listing_count.gt=0&per_page=10&page=5&geoip=true&range="+miles+"mi&client_id=NzU0MjI0N3wxNDk0MzgxMTAzLjcy";
+  var queryURL = "https://api.seatgeek.com/2/events?listing_count.gt=0&per_page=100&page=1&geoip=true&range="+miles+"mi&client_id=NzU0MjI0N3wxNDk0MzgxMTAzLjcy";
   var bandURL = "https://api.seatgeek.com/2/performers?q="+performer+"&client_id=NzU0MjI0N3wxNDk0MzgxMTAzLjcy";
   $.when(
     $.ajax({
@@ -69,7 +69,7 @@ function seatGeek2(){
   var performer = $("#search-input").val().trim();
   var miles = $("#miles").val().trim();
   parseInt(miles)
-  var queryURL = "https://api.seatgeek.com/2/events?listing_count.gt=0&per_page=10&page=5&geoip=true&range="+miles+"mi&client_id=NzU0MjI0N3wxNDk0MzgxMTAzLjcy";
+  var queryURL = "https://api.seatgeek.com/2/events?listing_count.gt=0&per_page=100&page=1&geoip=true&range="+miles+"mi&client_id=NzU0MjI0N3wxNDk0MzgxMTAzLjcy";
   var bandURL = "https://api.seatgeek.com/2/performers?q="+performer+"&client_id=NzU0MjI0N3wxNDk0MzgxMTAzLjcy";
   $.when(
     $.ajax({
